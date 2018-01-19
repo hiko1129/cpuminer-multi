@@ -2,4 +2,4 @@ version: '3'
 services:
   app:
     build: .
-    command: ./cpuminer -a $ALGORITHM -o $POOL_URL -u $USERNAME -p $PASSWORD
+    command: ./cpuminer -a $ALGORITHM -o $POOL_URL -u $USERNAME -p $PASSWORD $ADVANCED_OPTIONS
