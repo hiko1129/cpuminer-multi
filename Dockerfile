@@ -1,10 +1,18 @@
-FROM ubuntu:16.04
+FROM alpine:3.7
 
-RUN apt-get update -y \
- && apt-get install -y automake autoconf pkg-config libcurl4-openssl-dev libssl-dev libjansson-dev libgmp-dev make g++ git
+RUN apk add --no-cache autoconf \
+    automake \
+    build-base \
+    curl \
+    curl-dev \
+    git \
+    openssl-dev
+
 
 RUN git clone https://github.com/tpruvot/cpuminer-multi -b linux
 
 WORKDIR cpuminer-multi
 
-RUN ./build.sh
+RUN ./autogen.sh \
+  && ./configure CFLAGS="-O3 -march=native" --with-crypto --with-curl \
+  && make
