@@ -13,9 +13,9 @@ RUN git clone https://github.com/tpruvot/cpuminer-multi -b linux
 
 WORKDIR cpuminer-multi
 
-RUN ./autogen.sh \
-  && ./configure CFLAGS="-O3 -march=native" --with-crypto --with-curl \
-  && make
+RUN ./autogen.sh && \
+    ./configure CFLAGS="-O3 -march=native" --with-crypto --with-curl && \
+    make
 
 FROM alpine:3.7
 
